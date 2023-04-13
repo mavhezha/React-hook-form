@@ -19,6 +19,8 @@ function YouTubeForm() {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        
+        <div className="form-control">
         <label htmlFor="username">Username</label>
         <input 
           type="text" 
@@ -28,7 +30,9 @@ function YouTubeForm() {
           })} 
         />
         <p className="error">{errors.username?.message}</p>
+        </div>
 
+        <div className="form-control">
         <label htmlFor="email">Email</label>
         <input 
           type="email" 
@@ -39,10 +43,26 @@ function YouTubeForm() {
               value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               message: 'Please enter a valid email',
             },
+            validate: {
+              notAdmin: (fieldValue) => {
+              return (
+                fieldValue !== "xavi@vixeer.mavhezha" ||
+                "Enter a different email address"
+                );
+            },
+            notBlackListed: (fieldValue) => {
+              return (
+                !fieldValue.endsWith("matsimba.com") || 
+                "This domain is not supported"
+              );
+            },
+            }
           })} 
          />
          <p className="error">{errors.email?.message}</p>
-
+         </div>
+     
+        <div className="form-control">
         <label htmlFor="channel">Channel</label>
         <input 
           type="text" 
@@ -52,10 +72,11 @@ function YouTubeForm() {
           })} 
          />
          <p className="error">{errors.channel?.message}</p>
-
-        <button>Submit</button>
+         </div>
+         
+         <button>Submit</button>
       </form>
-      <DevTool control={control} />e />
+      <DevTool control={control}  />
     </div>
   );
 };
