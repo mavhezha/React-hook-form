@@ -8,7 +8,13 @@ type FormValues = {
 };
 
 function YouTubeForm() {
-  const form = useForm<FormValues>();
+  const form = useForm<FormValues>({
+    defaultValues: {
+      username: "Anashe",
+      email: "",
+      channel: "",
+    },
+  });
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
   
