@@ -91,20 +91,24 @@ function YouTubeForm() {
          </div>
          
          <div className="form-control">
-         <label htmlFor="channel">Twitter</label>
+         <label htmlFor="twitter">Twitter</label>
          <input 
            type="text" 
            id="twitter" 
-           {...register("social.twitter")} 
+           {...register("social.twitter", {
+             required: "Handle is required",
+           })} 
           />
           </div>
           
           <div className="form-control">
-         <label htmlFor="channel">Facebook</label>
+         <label htmlFor="facebook">Facebook</label>
          <input 
            type="text" 
            id="facebook" 
-           {...register("social.facebook")} 
+           {...register("social.facebook", {
+             required: "Handle is required",
+           })} 
           />
           </div>
           
@@ -124,7 +128,9 @@ function YouTubeForm() {
          <input 
            type="text" 
            id="secondary-phone" 
-           {...register("phoneNumbers.1")} 
+           {...register("phoneNumbers.1", {
+             required: "Phone is required",
+           })} 
           />
           </div>
          
