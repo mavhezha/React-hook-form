@@ -5,6 +5,11 @@ type FormValues = {
   username: string;
   email: string;
   channel: string;
+  social: {
+    twitter: string;
+    facebook: string;
+  };
+  phoneNumbers: string[];
 };
 
 function YouTubeForm() {
@@ -13,6 +18,11 @@ function YouTubeForm() {
       username: "Anashe",
       email: "",
       channel: "",
+      social: {
+        twitter: "",
+        facebook: "",
+      },
+      phoneNumbers: ["",""],
     },
   });
   const { register, control, handleSubmit, formState } = form;
@@ -79,6 +89,50 @@ function YouTubeForm() {
          />
          <p className="error">{errors.channel?.message}</p>
          </div>
+         
+         <div className="form-control">
+         <label htmlFor="twitter">Twitter</label>
+         <input 
+           type="text" 
+           id="twitter" 
+           {...register("social.twitter", {
+             required: "Handle is required",
+           })} 
+          />
+          </div>
+          
+          <div className="form-control">
+         <label htmlFor="facebook">Facebook</label>
+         <input 
+           type="text" 
+           id="facebook" 
+           {...register("social.facebook", {
+             required: "Handle is required",
+           })} 
+          />
+          </div>
+          
+          <div className="form-control">
+         <label htmlFor="primary-phone">Primary phone number</label>
+         <input 
+           type="text" 
+           id="primary-phone" 
+           {...register("phoneNumbers.0", {
+             required: "Phone is required",
+           })} 
+          />
+          </div>
+          
+          <div className="form-control">
+         <label htmlFor="secondary-phone">Secondary phone Number</label>
+         <input 
+           type="text" 
+           id="secondary-phone" 
+           {...register("phoneNumbers.1", {
+             required: "Phone is required",
+           })} 
+          />
+          </div>
          
          <button>Submit</button>
       </form>
